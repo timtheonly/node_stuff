@@ -1,12 +1,10 @@
-var resultString;
-var query;
 
 var express = require('express');
 var app = express();
 
-var user = require('./user');
-var invoice = require('./invoice');
-var client = require('./client');
+var user = require('./routes/user');
+var invoice = require('./routes/invoice');
+var client = require('./routes/client');
 
 var hbs = require('hbs');
 app.use(express.static(__dirname + '/public'));
@@ -18,8 +16,7 @@ app.get('/',function(req,res){
 });
 
 app.get('/invoice/:id',invoice.view);
-
 app.get('/client/:id',client.view);
-app.get('/client/',client.list);
+app.get('/client',client.list);
 
 app.listen(8000);
