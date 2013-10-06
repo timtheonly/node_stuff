@@ -7,6 +7,7 @@ exports.view = function(req, res){
 				console.log('query error: '+ err.code);
 				if(err.fatal){process.exit(1);}
 			}
+			var resultString="";
 			resultString = JSON.stringify(results);
 			resultString = resultString.substring(1,resultString.length-1);			
 			res.render('invoice',JSON.parse(resultString));

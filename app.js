@@ -2,9 +2,9 @@
 var express = require('express');
 var app = express();
 
-var user = require('./routes/user');
-var invoice = require('./routes/invoice');
-var client = require('./routes/client');
+var user = require('./models/user');
+var invoice = require('./models/invoice');
+var client = require('./models/client');
 
 var hbs = require('hbs');
 app.use(express.static(__dirname + '/public'));
@@ -19,4 +19,4 @@ app.get('/invoice/:id',invoice.view);
 app.get('/client/:id',client.view);
 app.get('/client',client.list);
 
-app.listen(8000);
+app.listen(process.env.PORT, process.env.IP);

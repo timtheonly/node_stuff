@@ -7,6 +7,7 @@ exports.view = function(req, res){
 			console.log('query error: ' +err.code);
 			if(err.fatal){process.exit(1);}
 		}
+		var resultString="";
 		resultString = JSON.stringify(results);
 		resultString = resultString.substring(1,resultString.length-1);
 		res.render('client',JSON.parse(resultString));
@@ -15,7 +16,7 @@ exports.view = function(req, res){
 
 exports.list = function(req,res){
 	connection.query('select * from client',function(err,results){
-		var returnval = Object();
+		var returnval = {};
 		if(err)
 		{
 			console.log('query error: ' +err.code);
