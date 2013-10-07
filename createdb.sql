@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `invoices` (
 -- Table structure for table `invoiveitems`
 --
 
-DROP TABLE IF EXISTS `invoiveitems`;
+DROP TABLE IF EXISTS `invoiceitems`;
 CREATE TABLE IF NOT EXISTS `invoiveitems` (
   `invoiceNo` int(11) NOT NULL,
   `itemId` int(11) NOT NULL AUTO_INCREMENT,

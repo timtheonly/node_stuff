@@ -9,7 +9,20 @@ exports.view = function(req, res){
 			}
 			var resultString="";
 			resultString = JSON.stringify(results);
-			resultString = resultString.substring(1,resultString.length-1);			
-			res.render('invoice',JSON.parse(resultString));
+			resultString = resultString.substring(1,resultString.length-1);	
+			results = JSON.parse(resultString);
+		    results.title = 'invoice'
+			res.render('invoice',results);
 		});
+};
+
+exports.list =function(req,res){
+    
+    connection.query('select * from invoices',function(err,results){
+        if(err)
+        {
+            console.log('invoices error: '+err.code);
+        }
+        res.render('invoices',{title:'invoices',invoices:results});
+    });
 };

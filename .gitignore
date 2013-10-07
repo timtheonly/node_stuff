@@ -2,3 +2,4 @@ node_modules/*
 lib/db.js
 public/bootstrap/*
 .c9revisions
+populatedb.sql

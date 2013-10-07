@@ -10,19 +10,19 @@ exports.view = function(req, res){
 		var resultString="";
 		resultString = JSON.stringify(results);
 		resultString = resultString.substring(1,resultString.length-1);
-		res.render('client',JSON.parse(resultString));
+		results = JSON.parse(resultString);
+		results.title = 'client'
+		res.render('client',results);
 	});
 };
 
 exports.list = function(req,res){
 	connection.query('select * from client',function(err,results){
-		var returnval = {};
 		if(err)
 		{
 			console.log('query error: ' +err.code);
 			if(err.fatal){process.exit(1);}
 		}
-		returnval['clients'] = results;
-		res.render('clients',returnval);
+		res.render('clients',{title:'clients',clients:results});
 	});
 };

@@ -2,21 +2,18 @@
 var express = require('express');
 var app = express();
 
-var user = require('./models/user');
-var invoice = require('./models/invoice');
-var client = require('./models/client');
+var UserModel = require('./models/user');
+var InvoiceModel = require('./models/invoice');
+var ClientModel = require('./models/client');
+
+var handlers ={user: UserModel, invoice:  InvoiceModel,client: ClientModel }
 
 var hbs = require('hbs');
+var routes = require('./routes/routes');
 app.use(express.static(__dirname + '/public'));
 app.set('view engine','html');
 app.engine('html',hbs.__express);
 
-app.get('/',function(req,res){
-	res.render('index');
-});
-
-app.get('/invoice/:id',invoice.view);
-app.get('/client/:id',client.view);
-app.get('/client',client.list);
+require('./routes/routes').setup(app,handlers);
 
 app.listen(process.env.PORT, process.env.IP);
